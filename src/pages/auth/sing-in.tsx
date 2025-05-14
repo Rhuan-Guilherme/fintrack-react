@@ -7,14 +7,12 @@ export function SingIn() {
         <h1 className="font-poppins text-3xl font-semibold text-gray-700">
           Acesse sua conta
         </h1>
-        <p className="font-roboto text-xs font-semibold text-gray-500">
-          O seu app para controle financeiro.
-        </p>
+        
       </div>
 
       <div className="font-roboto mt-5 space-y-5 font-semibold text-gray-500">
         <div className="flex flex-col gap-1">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="text-sm">Email</label>
           <input
             type="email"
             id="email"
@@ -22,7 +20,7 @@ export function SingIn() {
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="password">Senha</label>
+          <label htmlFor="password" className="text-sm">Senha</label>
           <input
             type="password"
             id="password"

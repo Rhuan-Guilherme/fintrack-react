@@ -30,16 +30,6 @@ export function SingIn() {
           />
         </div>
         <div className="relative flex flex-col gap-1">
-          <button
-            onClick={() => setVisiblePassword(!visiblePassword)}
-            className="absolute top-8.5 right-1 cursor-pointer px-2"
-          >
-            {!visiblePassword ? (
-              <EyeClosed className="w-4" />
-            ) : (
-              <Eye className="w-4" />
-            )}
-          </button>
           <label htmlFor="password" className="text-sm">
             Senha
           </label>
@@ -48,6 +38,16 @@ export function SingIn() {
             id="password"
             className="rounded-md border-1 border-gray-300 p-2"
           />
+          <button
+            onClick={() => setVisiblePassword(!visiblePassword)}
+            className="absolute top-8.5 right-1 cursor-pointer rounded-full px-2"
+          >
+            {!visiblePassword ? (
+              <EyeClosed className="w-4" />
+            ) : (
+              <Eye className="w-4" />
+            )}
+          </button>
         </div>
         <div className="flex items-center gap-1.5">
           <Checkbox.Root

@@ -39,16 +39,6 @@ export function SingUp() {
           />
         </div>
         <div className="relative flex flex-col gap-1">
-          <button
-            onClick={() => setVisiblePassword(!visiblePassword)}
-            className="absolute top-8.5 right-1 cursor-pointer px-2"
-          >
-            {!visiblePassword ? (
-              <EyeClosed className="w-4" />
-            ) : (
-              <Eye className="w-4" />
-            )}
-          </button>
           <label htmlFor="password" className="text-sm">
             Senha
           </label>
@@ -57,6 +47,16 @@ export function SingUp() {
             id="password"
             className="rounded-md border-1 border-gray-300 p-2"
           />
+          <button
+            onClick={() => setVisiblePassword(!visiblePassword)}
+            className="absolute top-8.5 right-1 cursor-pointer rounded-full px-2"
+          >
+            {!visiblePassword ? (
+              <EyeClosed className="w-4" />
+            ) : (
+              <Eye className="w-4" />
+            )}
+          </button>
         </div>
         <button className="w-full cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-gray-100">
           Criar conta

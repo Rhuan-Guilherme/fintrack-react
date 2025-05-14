@@ -6,3 +6,12 @@
   --font-roboto: 'Roboto', sans-serif;
   --font-poppins: 'Poppins', sans-serif
 }
+
+*{
+  outline-color: indigo;
+}
+
+:focus-visible{
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(63, 2, 196, 0.625);
+}

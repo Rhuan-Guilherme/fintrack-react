@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import googleIcon from "../../assets/icon-google.svg";
 
 export function SingIn() {
@@ -45,9 +46,9 @@ export function SingIn() {
 
       <div className="font-roboto mt-5 flex items-center justify-center rounded-md bg-gray-100 p-2 text-[14px] text-gray-500">
         Novo no Fintrack?
-        <span className="ml-1.5 font-semibold text-indigo-600">
+        <Link to='/sing-up' className="ml-1.5 font-semibold text-indigo-600">
           Crie uma conta
-        </span>
+        </Link>
       </div>
     </>
   );

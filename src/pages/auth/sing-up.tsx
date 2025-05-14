@@ -1,8 +1,11 @@
 import { Link } from "react-router";
 import googleIcon from "../../assets/icon-google.svg";
-import { EyeClosed } from "lucide-react";
+import { Eye, EyeClosed } from "lucide-react";
+import { useState } from "react";
 
 export function SingUp() {
+  const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
+
   return (
     <>
       <div className="lg:mb-10">
@@ -36,14 +39,21 @@ export function SingUp() {
           />
         </div>
         <div className="relative flex flex-col gap-1">
-          <button className="absolute top-8 right-2 cursor-pointer px-2">
-            <EyeClosed className="w-4" />
+          <button
+            onClick={() => setVisiblePassword(!visiblePassword)}
+            className="absolute top-8.5 right-1 cursor-pointer px-2"
+          >
+            {!visiblePassword ? (
+              <EyeClosed className="w-4" />
+            ) : (
+              <Eye className="w-4" />
+            )}
           </button>
           <label htmlFor="password" className="text-sm">
             Senha
           </label>
           <input
-            type="password"
+            type={!visiblePassword ? "password" : "text"}
             id="password"
             className="rounded-md border-1 border-gray-300 p-2"
           />

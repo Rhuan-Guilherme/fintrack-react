@@ -1,8 +1,12 @@
 import { Link } from "react-router";
 import googleIcon from "../../assets/icon-google.svg";
-import { EyeClosed } from "lucide-react";
+import { CheckIcon, Eye, EyeClosed } from "lucide-react";
+import { useState } from "react";
+import { Checkbox } from "radix-ui";
 
 export function SingIn() {
+  const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
+
   return (
     <>
       <div className="lg:mb-10">
@@ -26,17 +30,40 @@ export function SingIn() {
           />
         </div>
         <div className="relative flex flex-col gap-1">
-          <button className="absolute top-8 right-2 cursor-pointer px-2">
-            <EyeClosed className="w-4" />
+          <button
+            onClick={() => setVisiblePassword(!visiblePassword)}
+            className="absolute top-8.5 right-1 cursor-pointer px-2"
+          >
+            {!visiblePassword ? (
+              <EyeClosed className="w-4" />
+            ) : (
+              <Eye className="w-4" />
+            )}
           </button>
           <label htmlFor="password" className="text-sm">
             Senha
           </label>
           <input
-            type="password"
+            type={!visiblePassword ? "password" : "text"}
             id="password"
             className="rounded-md border-1 border-gray-300 p-2"
           />
+        </div>
+        <div className="flex items-center gap-1.5">
+          <Checkbox.Root
+            className="h-4 w-4 rounded-sm border-1 border-gray-300 shadow outline-none"
+            defaultChecked
+            id="c1"
+          >
+            <Checkbox.Indicator>
+              <div className="flex h-full w-full items-center justify-center rounded-sm bg-indigo-600">
+                <CheckIcon className="w-2 text-gray-100" />
+              </div>
+            </Checkbox.Indicator>
+          </Checkbox.Root>
+          <label className="text-xs" htmlFor="c1">
+            Lembrar de mim nesse dispositivo
+          </label>
         </div>
         <button className="w-full cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-gray-100">
           Entrar

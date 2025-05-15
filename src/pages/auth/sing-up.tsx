@@ -2,12 +2,38 @@ import { Link } from "react-router";
 import googleIcon from "../../assets/icon-google.svg";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const singUpSchema = z.object({
+  email: z.string().email("Informe um e-mail válido."),
+  name: z.string().min(2, "Informe seu nome corretamente."),
+  password: z.string(),
+});
+
+type FormData = z.infer<typeof singUpSchema>;
 
 export function SingUp() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(singUpSchema),
+  });
   const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
+
+  function handleSingUp(data: FormData) {
+    console.log(data);
+    reset();
+  }
 
   return (
     <>
+      <title>Fintrack | Cadastro</title>
+
       <div className="lg:mb-10">
         <h1 className="font-poppins text-3xl font-semibold text-gray-700 lg:text-4xl">
           Crie sua conta
@@ -17,12 +43,16 @@ export function SingUp() {
         </p>
       </div>
 
-      <div className="font-roboto mt-5 space-y-5 font-semibold text-gray-500">
+      <form
+        onSubmit={handleSubmit(handleSingUp)}
+        className="font-roboto mt-5 space-y-5 font-semibold text-gray-500"
+      >
         <div className="flex flex-col gap-1">
           <label htmlFor="email" className="text-sm">
             Email
           </label>
           <input
+            {...register("email")}
             type="email"
             id="email"
             className="rounded-md border-1 border-gray-300 p-2"
@@ -33,21 +63,27 @@ export function SingUp() {
             Nome
           </label>
           <input
+            {...register("name")}
             type="text"
             id="name"
             className="rounded-md border-1 border-gray-300 p-2"
           />
+          <span className="text-sm font-normal text-rose-400 transition-all">
+            {errors.name && "informe seu nome corretamente"}
+          </span>
         </div>
         <div className="relative flex flex-col gap-1">
           <label htmlFor="password" className="text-sm">
             Senha
           </label>
           <input
+            {...register("password")}
             type={!visiblePassword ? "password" : "text"}
             id="password"
             className="rounded-md border-1 border-gray-300 p-2"
           />
           <button
+            type="button"
             onClick={() => setVisiblePassword(!visiblePassword)}
             className="absolute top-8.5 right-1 cursor-pointer rounded-full px-2"
           >
@@ -58,10 +94,13 @@ export function SingUp() {
             )}
           </button>
         </div>
-        <button className="w-full cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-gray-100">
+        <button
+          type="submit"
+          className="w-full cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-gray-100"
+        >
           Criar conta
         </button>
-      </div>
+      </form>
 
       <div className="font-roboto my-4 flex items-center">
         <div className="flex-grow border-t border-gray-300"></div>

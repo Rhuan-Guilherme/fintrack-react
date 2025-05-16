@@ -16,8 +16,12 @@ export function AuthLayout() {
       </div>
       <div className="hidden h-full w-full p-2 lg:block">
         <div className="flex h-full w-full flex-col items-end justify-between rounded-lg bg-radial-[at_50%_75%] from-sky-400 via-blue-600 to-indigo-900 to-90% p-10">
-          <div className="">Fintrak</div>
-          <div>cards</div>
+          <span className="font-poppins text-xl font-semibold text-gray-200">
+            Fintrak
+          </span>
+          <span className="font-poppins text-xl font-semibold text-gray-200">
+            O seu app para gerenciamento financeiro
+          </span>
         </div>
       </div>
     </div>

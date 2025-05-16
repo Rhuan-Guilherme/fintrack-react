@@ -6,6 +6,7 @@ import { Checkbox } from "radix-ui";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { authenticateUserAPI } from "../../API/user/authenticate";
 
 const singInSchema = z.object({
   email: z.string().email(),
@@ -20,8 +21,16 @@ export function SingIn() {
   });
   const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
 
-  function handleSingIn(data: FormData) {
-    console.log(data);
+  async function handleSingIn(data: FormData) {
+    try {
+      const authenticateUser = await authenticateUserAPI({
+        email: data.email,
+        password: data.password,
+      });
+      console.log(authenticateUser.data);
+    } catch (error) {
+      console.log(error);
+    }
     reset();
   }
 

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUserAPI } from "../../API/user/register";
 
 const singUpSchema = z.object({
   email: z.string().email("Informe um e-mail válido."),
@@ -25,8 +26,17 @@ export function SingUp() {
   });
   const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
 
-  function handleSingUp(data: FormData) {
-    console.log(data);
+  async function handleSingUp(data: FormData) {
+    try {
+      const registerUser = await registerUserAPI({
+        email: data.email,
+        name: data.email,
+        password: data.password,
+      });
+      console.log(registerUser);
+    } catch (error) {
+      console.log(error);
+    }
     reset();
   }
 
